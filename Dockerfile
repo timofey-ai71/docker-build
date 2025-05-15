@@ -1,10 +1,14 @@
 FROM python:3.12-slim
 
 ARG POETRY_VERSION
-
 RUN pip install poetry==$POETRY_VERSION
 
-COPY . .
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock ./
+COPY docker_build ./docker_build
+# Quirk of poetry, we will get rid of it later
+RUN touch README.md
 
 RUN poetry install
 
