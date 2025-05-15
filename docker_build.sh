@@ -18,6 +18,7 @@ else
     exit 1
 fi
 
+DOCKER_BUILDKIT=1 \
 docker build \
     --platform $PLATFORM \
     --build-arg POETRY_VERSION=${POETRY_VERSION} \
