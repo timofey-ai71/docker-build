@@ -1,0 +1,21 @@
+[project]
+name = "docker_build"
+version = "0.1.0"
+description = "Dummy FastAPI app to showcase docker build options"
+readme = "README.md"
+requires-python = "^3.12"
+authors = [
+    {name = "Timofey Urbanovich",email = "timofey.urbanovich@ai71.ai"}
+]
+dynamic = ["dependencies"]
+
+[tool.poetry.dependencies]
+fastapi = "^0.115.12"
+uvicorn = "^0.34.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
