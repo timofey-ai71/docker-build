@@ -11,12 +11,11 @@ WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
 
-RUN <<EOF
+RUN --mount=type=cache,target=$POETRY_CACHE_DIR <<EOF
 poetry install \
   --without dev \
   --no-root \
   --no-interaction
-rm -rf $POETRY_CACHE_DIR
 EOF
 
 
