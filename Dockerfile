@@ -10,10 +10,7 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=1 \
 WORKDIR /app
 
 COPY pyproject.toml poetry.lock ./
-COPY docker_build ./docker_build
 
-# It's important to delete cache in the same run command
-# This avoids creating a docker image layer with cache
 RUN <<EOF
 poetry install \
   --without dev \
@@ -21,5 +18,7 @@ poetry install \
   --no-interaction
 rm -rf $POETRY_CACHE_DIR
 EOF
+
+COPY docker_build ./docker_build
 
 CMD ["poetry", "run", "uvicorn", "docker_build.app:app", "--host", "0.0.0.0", "--port", "8000"]
